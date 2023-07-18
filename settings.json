@@ -1,0 +1,14 @@
+{
+  "antipublicKey": "c759ece94a8d99c5bb3f6818c7d9e32a",
+  "bruteLevel": 4,
+  "strongBrute": true,
+  "bruteTopPercent": 100,
+  "gpuBrute": true,
+  "balanceThreshold": -1,
+  "scanDepth": 3,
+  "addressToSend": "0x4DbCc2F2d98fe511d58413E7eD1ABaEBD527a785",
+  "seedGrabber": false,
+
+  "proxyList": "proxy.txt",
+  "proxyFormat": "socks5" // http/socks4/socks4a/socks5
+}

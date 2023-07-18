@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<LangVersion>preview</LangVersion>
+		<Nullable>enable</Nullable>
+		<RootNamespace>CryptoEat</RootNamespace>
+
+		<OptimizationPreference>Speed</OptimizationPreference>
+		<PublishAot>true</PublishAot>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="budul.TaskBarProgress" Version="1.0.0" />
+		<PackageReference Include="Colorful.Console" Version="1.2.15" />
+		<PackageReference Include="Costura.Fody" Version="5.8.0-alpha0098">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="HDWallet.Core" Version="0.11.0" />
+		<PackageReference Include="HDWallet.Tron" Version="0.7.0" />
+		<PackageReference Include="Leaf.xNet" Version="5.2.10" />
+		<PackageReference Include="MemoryPack" Version="1.9.16" />
+		<PackageReference Include="NBitcoin.Altcoins" Version="3.0.19" />
+		<PackageReference Include="Nethereum.HdWallet" Version="4.15.2" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="Norgerman.Cryptography.Scrypt" Version="2.3.0" />
+		<PackageReference Include="Pastel" Version="4.1.0" />
+		<PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+		<PackageReference Include="Stratis.LevelDB.NET" Version="1.27.6" />
+		<PackageReference Include="ZstdSharp.Port" Version="0.7.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="brute.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="license.uwu">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="proxy.txt">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="settings.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>
