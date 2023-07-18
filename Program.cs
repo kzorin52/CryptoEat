@@ -11,7 +11,6 @@ TaskBar.SetEmpty();
 Generic.SetPriority();
 
 Generic.GreetUser();
-Generic.LicenseWork();
 
 LogStreams.Initialize();
 Generic.LoadSettings();

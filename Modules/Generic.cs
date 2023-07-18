@@ -251,23 +251,6 @@ internal static class Generic
         }
     }
 
-    internal static void LicenseWork()
-    {
-        if (!File.Exists("license.uwu"))
-        {
-            Console.Write("The license file is missing. Place ", Color.DeepPink);
-            Console.Write("license.uwu", Color.HotPink);
-            Console.WriteLine(" in the program folder.", Color.DeepPink);
-            Console.ReadLine();
-
-            Environment.Exit(-1);
-            Environment.FailFast("lic_not");
-        }
-
-        Server.Check();
-        Console.WriteLine("Correct license file!", Color.LightGreen);
-    }
-
     private static string GetHwid()
     {
         using var process = new Process();
