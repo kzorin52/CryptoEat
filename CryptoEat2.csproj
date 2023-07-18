@@ -11,6 +11,7 @@
 		<OptimizationPreference>Speed</OptimizationPreference>
 		<PublishAot>true</PublishAot>
 		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>

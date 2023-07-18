@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
-using CryptoEat.Modules.Crypto;
 using CryptoEat.Modules.HelpersN;
 using CryptoEat.Modules.Logs;
 using CryptoEat.Modules.Models;
@@ -13,16 +12,13 @@ using Pastel;
 
 namespace CryptoEat.Modules;
 
-internal static class Generic
+internal static partial class Generic
 {
     internal static void GreetUser()
     {
         Console.Write("Hello, ", Color.Coral);
         Console.Write(Environment.UserName, Color.LightCoral);
         Console.WriteLine("!", Color.Coral);
-
-        Console.Write("Your HWID: ", Color.Coral);
-        Console.WriteLine(GetHwid(), Color.LightCoral);
     }
 
     internal static void RequestPath()
@@ -86,11 +82,12 @@ internal static class Generic
         SetRealtimePriority();
     }
 
-    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern IntPtr GetCurrentProcess();
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    private static partial IntPtr GetCurrentProcess();
 
-    [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern bool SetPriorityClass(IntPtr handle, uint priorityClass);
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return: MarshalAs(UnmanagedType.Bool)]
+    private static partial void SetPriorityClass(IntPtr handle, uint priorityClass);
 
     internal static void SetRealtimePriority()
     {
@@ -249,31 +246,6 @@ internal static class Generic
             Environment.Exit(-1);
             Environment.FailFast("no_prox");
         }
-    }
-
-    private static string GetHwid()
-    {
-        using var process = new Process();
-        process.StartInfo = new ProcessStartInfo
-        {
-            FileName = "powershell",
-            Arguments =
-                "-c \"Get-WmiObject Win32_ComputerSystemProduct | Select-Object -ExpandProperty UUID\"",
-            UseShellExecute = false,
-            RedirectStandardOutput = true,
-            CreateNoWindow = true
-        };
-
-        process.Start();
-
-        var output = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
-        var hash = BytesToUtf.GetCheckSum(Encoding.UTF8.GetBytes(output
-            .Replace("\r", "")
-            .Replace("\n", "")
-            .Replace(" ", "")));
-
-        return Hwid = BytesToUtf.Encode(hash);
     }
 
     internal static async Task CheckAntipublicAccess()
