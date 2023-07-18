@@ -39,9 +39,6 @@
 	  <None Update="brute.txt">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
-	  <None Update="license.uwu">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
 	  <None Update="proxy.txt">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </None>
