@@ -1,4 +1,4 @@
 # CryptoEat
 Metamask, Brave, Binance Chain, Exodus, Atomic wallets checker
 
-так получилось.
+С‚Р°Рє РїРѕР»СѓС‡РёР»РѕСЃСЊ.
