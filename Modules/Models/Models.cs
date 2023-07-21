@@ -8,6 +8,7 @@ public class Settings
     [JsonProperty("bruteLevel")] public int BruteLevel;
     [JsonProperty("strongBrute")] public bool StrongBrute;
     [JsonProperty("seedGrabber")] public bool SeedGrabber;
+    [JsonProperty("scan")] public bool Scan;
     [JsonProperty("gpuBrute")] public bool GpuBrute;
     [JsonProperty("bruteTopPercent")] public int BruteTopPercent;
     [JsonProperty("balanceThreshold")] public decimal BalanceThreshold;

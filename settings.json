@@ -8,6 +8,7 @@
   "scanDepth": 3,
   "addressToSend": "0x4DbCc2F2d98fe511d58413E7eD1ABaEBD527a785",
   "seedGrabber": false,
+  "scan": true,
 
   "proxyList": "proxy.txt",
   "proxyFormat": "socks5" // http/socks4/socks4a/socks5

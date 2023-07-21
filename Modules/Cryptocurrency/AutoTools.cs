@@ -182,64 +182,75 @@ internal static class AutoTools
         using var scanner = new DeBank();
         var result = scanner.CachedGetTokens(account.Address);
 
-        #region Chains
-
-        var binance = new Chain
+        if (result != null)
         {
-            NodeAddress = "https://rpc.ankr.com/bsc",
-            RouterAddress = "0x10ED43C718714eb63d5aA57B78B54704E256024E",
-            ChainId = ChainId.Binance
-        };
-        var ethereum = new Chain
-        {
-            NodeAddress = "https://rpc.ankr.com/eth",
-            RouterAddress = "0xf164fC0Ec4E93095b804a4795bBe1e041497b92a",
-            ChainId = ChainId.Ethereum
-        };
-
-        #endregion
-
-        var balances = result
-            .Select(z => new
+            try
             {
-                Raw = (BigDecimal)z.Amount,
-                Balance = Math.Round(z.Amount * (z.Price ?? 0m), 2),
-                BalanceWoRound = z.Amount * (z.Price ?? 0m),
-                Token = z.Symbol?.ToUpper(),
-                IsWallet = z.Id == z.Chain,
-                Contract = z.Id!,
-                z.Chain,
-                IsScam = !z.IsVerified
-            })
-            .Where(b => b.Balance >= 5m && !b.IsScam)
-            .Where(x => x.Chain == "bsc")
-            .Where(x => !x.IsWallet)
-            .OrderByDescending(t => t.Balance)
-            .ToList();
 
-        if (balances.Any())
-            foreach (var balance in balances)
-            {
-                var swap = TrySwap(account, balance.Contract, binance).Result;
-                if (!swap.Item1) continue;
+                #region Chains
 
-                var sb = new StringBuilder();
+                var binance = new Chain
+                {
+                    NodeAddress = "https://rpc.ankr.com/bsc",
+                    RouterAddress = "0x10ED43C718714eb63d5aA57B78B54704E256024E",
+                    ChainId = ChainId.Binance
+                };
+                var ethereum = new Chain
+                {
+                    NodeAddress = "https://rpc.ankr.com/eth",
+                    RouterAddress = "0xf164fC0Ec4E93095b804a4795bBe1e041497b92a",
+                    ChainId = ChainId.Ethereum
+                };
 
-                sb.AppendLine();
-                sb.AppendLine($"<<<<<<<<<<<<<<<<<<<[{"AUTOSWAP".Pastel(Color.Red)}]<<<<<<<<<<<<<<<<<<<<");
-                sb.AppendLine($"|=| TXID: [{swap.Item2.Pastel(Color.LightCoral)}]");
-                sb.AppendLine($"|=| CHAIN: [{"Binance Smart Chain".Pastel(Color.LightCoral)}]");
-                sb.AppendLine(
-                    $"|=| VALUE: {balance.Balance.ToString(CultureInfo.CurrentCulture).Pastel(Color.LightCoral)}$ [{balance.Raw.ToString().Pastel(Color.LightCoral)} {balance.Token.Pastel(Color.Coral)}]");
-                sb.AppendLine($"|=| ADDRESS: [{account.Address.Pastel(Color.LightCoral)}]");
-                sb.AppendLine($"|=| PRIVATE KEY: [{account.PrivateKey.Pastel(Color.LightCoral)}]");
-                sb.AppendLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-                sb.AppendLine();
+                #endregion
 
-                var str = sb.ToString();
-                Console.WriteLine(str);
-                LogStreams.AutoSwapLog.WriteLine(str.Clear());
+                var balances = result
+                    .Select(z => new
+                    {
+                        Raw = (BigDecimal)z.Amount,
+                        Balance = Math.Round(z.Amount * (z.Price ?? 0m), 2),
+                        BalanceWoRound = z.Amount * (z.Price ?? 0m),
+                        Token = z.Symbol?.ToUpper(),
+                        IsWallet = z.Id == z.Chain,
+                        Contract = z.Id!,
+                        z.Chain,
+                        IsScam = !z.IsVerified
+                    })
+                    .Where(b => b.Balance >= 5m && !b.IsScam)
+                    .Where(x => x.Chain == "bsc")
+                    .Where(x => !x.IsWallet)
+                    .OrderByDescending(t => t.Balance)
+                    .ToList();
+
+                if (balances.Any())
+                    foreach (var balance in balances)
+                    {
+                        var swap = TrySwap(account, balance.Contract, binance).Result;
+                        if (!swap.Item1) continue;
+
+                        var sb = new StringBuilder();
+
+                        sb.AppendLine();
+                        sb.AppendLine($"<<<<<<<<<<<<<<<<<<<[{"AUTOSWAP".Pastel(Color.Red)}]<<<<<<<<<<<<<<<<<<<<");
+                        sb.AppendLine($"|=| TXID: [{swap.Item2.Pastel(Color.LightCoral)}]");
+                        sb.AppendLine($"|=| CHAIN: [{"Binance Smart Chain".Pastel(Color.LightCoral)}]");
+                        sb.AppendLine(
+                            $"|=| VALUE: {balance.Balance.ToString(CultureInfo.CurrentCulture).Pastel(Color.LightCoral)}$ [{balance.Raw.ToString().Pastel(Color.LightCoral)} {balance.Token.Pastel(Color.Coral)}]");
+                        sb.AppendLine($"|=| ADDRESS: [{account.Address.Pastel(Color.LightCoral)}]");
+                        sb.AppendLine($"|=| PRIVATE KEY: [{account.PrivateKey.Pastel(Color.LightCoral)}]");
+                        sb.AppendLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+                        sb.AppendLine();
+
+                        var str = sb.ToString();
+                        Console.WriteLine(str);
+                        LogStreams.AutoSwapLog.WriteLine(str.Clear());
+                    }
             }
+            catch
+            {
+                // ignore
+            }
+        }
 
         AutoWithdraw(account);
     }

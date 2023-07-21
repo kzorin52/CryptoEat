@@ -121,6 +121,7 @@ internal class DeBank : IDisposable
 
     internal List<TokenList>? CachedGetTokens(string address)
     {
+        if (!Generic.Settings.Scan) return null;
         lock (DeBankCache.Locker)
         {
             if (DeBankCache.CacheDictionary.TryGetValue(address, out var tokens)) return tokens;

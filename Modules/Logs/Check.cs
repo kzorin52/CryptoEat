@@ -199,7 +199,7 @@ internal static class Check
                             $"{string.Join(Environment.NewLine, log.Wallet.WalletInfo.Accounts.Select(x => x.Address))} | {scanResult.TotalBalance.ToString(CultureInfo.CurrentCulture).Pastel(Color.LightCoral)}$");
                     }
 
-                    if (Math.Round(scanResult.TotalBalance) <= Generic.Settings.BalanceThreshold) continue;
+                    if (Math.Round(scanResult.TotalBalance) <= Generic.Settings.BalanceThreshold && Generic.Settings.Scan) continue;
                 }
 
                 Console.WriteLine(
