@@ -219,7 +219,7 @@ namespace CryptoEat.Modules.Logs
                 .Where(x => x.Value != null)
                 .ToDictionary(x => x.Key, x => x.Value);
 
-            if (!resp.Values.Where(x => x != null).SelectMany(x => x!).Any()) return result;
+            var empty = !resp.Values.Where(x => x != null).SelectMany(x => x!).Any();
 
             try
             {
@@ -242,6 +242,18 @@ namespace CryptoEat.Modules.Logs
                             .Pastel(Color.LightCoral))
                     .AppendLine("$]");
                 sb.Append("|=| PATH: [").Append(logPath.Pastel(Color.LightCoral)).AppendLine("]");
+
+                if (empty)
+                {
+                    foreach (var account in accounts)
+                    {
+                        sb.Append("|=| ADDRESS: [").Append(account.Address.Pastel(Color.LightCoral)).AppendLine("]");
+                    }
+
+                    sb.AppendLine("=================================================");
+                    result.LogResult = sb.ToString();
+                    return result;
+                }
 
                 foreach (var (account, tokenList) in resp)
                 {

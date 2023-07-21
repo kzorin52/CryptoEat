@@ -16,16 +16,11 @@ public static class TronCache
 
 internal class TronScan : IDisposable
 {
-    private HttpRequest request = Generic.ProxyList.Next().GetHttpRequest();
+    private HttpRequest request = new();
 
     public void Dispose()
     {
         request.Dispose();
-    }
-
-    public void RotateProxy()
-    {
-        request = Generic.ProxyList.Next().GetHttpRequest();
     }
 
     public static void SaveCache()
@@ -79,7 +74,6 @@ internal class TronScan : IDisposable
 
     private TronResult GetTron(string adr)
     {
-        RotateProxy();
         return JsonConvert.DeserializeObject<TronResult>(request.Get($"https://apilist.tronscan.org/api/account/token_asset_overview?address={adr}").ToString()!)!;
     }
 
@@ -96,7 +90,6 @@ internal class TronScan : IDisposable
         }
         catch
         {
-            RotateProxy();
             goto repeat;
         }
     }

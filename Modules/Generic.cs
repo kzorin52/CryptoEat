@@ -181,7 +181,7 @@ internal static partial class Generic
         if (!Directory.Exists(TempDir))
             Directory.CreateDirectory(TempDir);
 
-        if (File.Exists(Settings.ProxyPath) && Settings.ProxyFormat != null)
+        if (File.Exists(Settings.ProxyPath) && Settings is { ProxyFormat: not null, Scan: true })
         {
             var tempProxy = File.ReadAllLines(Settings.ProxyPath)
                 .Select(x => x.Replace(new[] { '\r', '\n', ' ' }, ""))
@@ -238,7 +238,7 @@ internal static partial class Generic
             ProxyList = new EnumeratorWrapper<Proxy>(tempList);
             ProxyCount = tempList.Count;
         }
-        else
+        else if (Settings.Scan)
         {
             Console.WriteLine("No proxy!", Color.DeepPink);
             Console.ReadLine();
@@ -345,8 +345,6 @@ internal static partial class Generic
     }
 
     #region VARIABLES
-
-    internal static string Hwid = string.Empty;
 
     internal static string Path = string.Empty;
 
