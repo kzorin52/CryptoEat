@@ -3,7 +3,7 @@ Metamask, Brave, Binance Chain, Exodus, Atomic wallets checker
 
 Функционал и фичи:
 - Поддержка кошельков Metamask, Ronin Wallet, Binance Chain, Brave Wallet, Exodus desktop wallet, Atomic desktop wallet
-- Написан на C#, присутствует полное соблюдение правил ООП, красивый и модульный код
+- Написан на C#, красивый и модульный код
 - Везде присутствует логгирование и обработка ошибок
 - Брутфорс на GPU для всех кошельков, кроме Atomic Wallet
 - Автовывод с кошельков
@@ -18,3 +18,5 @@ Metamask, Brave, Binance Chain, Exodus, Atomic wallets checker
 - Кеш сканирования
 
 Программа сделана исключительно в образовательных целях, для тестирования на собственных кошельках
+
+P.S. Нужны прокси с ротацией. Если у вас нет прокси с ротацией - пожалуйста, не пишите мне
