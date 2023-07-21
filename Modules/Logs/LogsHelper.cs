@@ -5,7 +5,7 @@ namespace CryptoEat.Modules.Logs;
 internal class LogsHelper
 {
     private static readonly Regex LoginPassRegex = new(@"(?i)(user(?:name)?|login):\s*(.*?)\s*(pass(?:word)?):?\s*(.*)",
-        RegexOptions.Compiled);
+        RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly Regex Regex4 = new("Value: (.*)", RegexOptions.Compiled);
     private static readonly Regex Regex5 = new(@".*\t(.*)", RegexOptions.Compiled);
     private static readonly Regex Regex7 = new(@"\| Text: (.*)", RegexOptions.Compiled);

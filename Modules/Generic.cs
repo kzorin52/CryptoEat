@@ -360,7 +360,7 @@ internal static partial class Generic
 
     internal static EventHandler ProcessExit;
 
-    internal const bool DEBUG = true;
+    internal const bool DEBUG = false;
 
     internal static EnumeratorWrapper<Proxy> ProxyList;
 
