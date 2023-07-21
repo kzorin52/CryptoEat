@@ -169,6 +169,23 @@ namespace CryptoEat.Modules.Logs
             }
             catch (Exception ex)
             {
+                var sb = new StringBuilder();
+                sb.AppendLine();
+                sb.Append($"[{prefix.Pastel(Color.Red)}] ").AppendLine(new string('>', 49 - (prefix.Length + 1)));
+                sb.Append("|=| TOTAL: [")
+                    .Append(
+                        Math.Round(result.TotalBalance, 2).ToString(CultureInfo.CurrentCulture)
+                            .Pastel(Color.LightCoral))
+                    .AppendLine("$]");
+                if (account.Mnemonic != null)
+                    sb.Append("|=| MNEMO: [").Append(account.Mnemonic.ToString().Pastel(Color.LightCoral))
+                        .AppendLine("]");
+                sb.Append("|=| PATH: [").Append(logPath.Pastel(Color.LightCoral)).AppendLine("]");
+                if (!string.IsNullOrWhiteSpace(pass))
+                    sb.Append("|=| PASSWORD: [").Append(pass.Pastel(Color.LightCoral)).AppendLine("]");
+
+                result.LogResult = sb.ToString();
+
                 Generic.WriteError(ex);
             }
 
@@ -246,9 +263,7 @@ namespace CryptoEat.Modules.Logs
                 if (empty)
                 {
                     foreach (var account in accounts)
-                    {
                         sb.Append("|=| ADDRESS: [").Append(account.Address.Pastel(Color.LightCoral)).AppendLine("]");
-                    }
 
                     sb.AppendLine("=================================================");
                     result.LogResult = sb.ToString();
@@ -275,6 +290,20 @@ namespace CryptoEat.Modules.Logs
             }
             catch (Exception ex)
             {
+                var sb = new StringBuilder();
+                sb.AppendLine();
+                sb.AppendLine("=================================================");
+                sb.Append("|=| TOTAL: [")
+                    .Append(
+                        Math.Round(result.TotalBalance, 2).ToString(CultureInfo.CurrentCulture)
+                            .Pastel(Color.LightCoral))
+                    .AppendLine("$]");
+                sb.Append("|=| PATH: [").Append(logPath.Pastel(Color.LightCoral)).AppendLine("]");
+                foreach (var account in accounts)
+                    sb.Append("|=| ADDRESS: [").Append(account.Address.Pastel(Color.LightCoral)).AppendLine("]");
+
+                sb.AppendLine("=================================================");
+                result.LogResult = sb.ToString();
                 Generic.WriteError(ex);
             }
 
