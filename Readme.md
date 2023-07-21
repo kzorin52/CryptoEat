@@ -1,5 +1,5 @@
 # CryptoEat 2.0
-Metamask, Brave, Binance Chain, Ronin Exodus, Atomic wallets checker
+Metamask, Brave, Binance Chain, Ronin, Exodus, Atomic wallets checker
 
 Функционал и фичи:
 - Поддержка кошельков Metamask, Ronin Wallet, Binance Chain, Brave Wallet, Exodus desktop wallet, Atomic desktop wallet
