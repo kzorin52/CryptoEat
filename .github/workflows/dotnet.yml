@@ -14,9 +14,9 @@ jobs:
 
     steps:
     - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: 3.1
+        dotnet-version: '7.0.x'
 
     - name: Restore dependencies
       run: dotnet restore
@@ -28,7 +28,8 @@ jobs:
       run: dotnet publish --configuration Release --output ./build-output
 
     - name: Upload build artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
+
       with:
         name: build-artifact
         path: ./build-output
