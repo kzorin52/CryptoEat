@@ -20,3 +20,5 @@ Metamask, Brave, Binance Chain, Ronin, Exodus, Atomic wallets checker
 Программа сделана исключительно в образовательных целях, для тестирования на собственных кошельках
 
 P.S. Нужны прокси с ротацией. Если у вас нет прокси с ротацией - пожалуйста, не пишите мне
+
+[Windows build](https://github.com/kzorin52/CryptoEat/actions/workflows/dotnet.yml)
