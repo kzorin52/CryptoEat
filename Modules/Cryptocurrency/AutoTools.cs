@@ -38,7 +38,7 @@ internal static class AutoTools
         {
             ChainId = 100,
             ChainName = "Xdai",
-            RpcAdr = "https://rpc.xdaichain.com/"
+            RpcAdr = "https://rpc.gnosischain.com "
         },
         new ChainDef
         {
@@ -74,7 +74,7 @@ internal static class AutoTools
         {
             ChainId = 10,
             ChainName = "Optimism",
-            RpcAdr = "https://mainnet.optimism.io/"
+            RpcAdr = "https://optimism.publicnode.com"
         },
         new ChainDef
         {
@@ -86,7 +86,7 @@ internal static class AutoTools
         {
             ChainId = 1285,
             ChainName = "Moonriver",
-            RpcAdr = "https://rpc.moonriver.moonbeam.network/"
+            RpcAdr = "https://moonbeam.public.blastapi.io"
         },
         new ChainDef
         {
@@ -141,7 +141,9 @@ internal static class AutoTools
             {
                 Helpers.SetTitle($"Doing autowithdraw... [{Chains.IndexOf(chain)}/{Chains.Count}]");
 
-                var web3 = new Web3(account, chain.RpcAdr);
+                var tAcc = new Account(account.PrivateKey, chain.ChainId);
+
+                var web3 = new Web3(tAcc, chain.RpcAdr);
                 var txManager = web3.Eth.GetEtherTransferService();
                 var fee = GetGasPrice(web3);
                 var toSend =
