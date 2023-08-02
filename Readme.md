@@ -22,3 +22,7 @@ Metamask, Brave, Binance Chain, Ronin, Exodus, Atomic wallets checker
 P.S. Нужны прокси с ротацией. Если у вас нет прокси с ротацией - пожалуйста, не пишите мне
 
 [Windows build](https://github.com/kzorin52/CryptoEat/actions/workflows/dotnet.yml)
+
+
+#!!!!!!
+ПРОГРАММА НАПИСАНА ИСКЛЮЧИТЕЛЬНО В РАМКАХ ИССЛЕДОВАНИЯ БЕЗОПАСНОСТИ И ОБРАЗОВАТЕЛЬНЫХ ЦЕЛЯХ. АВТОР НЕ НЕСЕТ ОТВЕТСТВЕННОСТИ ЗА ДАЛЬНЕЙШЕЕ ИСПОЛЬЗОВАНИЕ КОДА И ПРОГРАММЫ ТРЕТЬИМИ ЛИЦАМИ
